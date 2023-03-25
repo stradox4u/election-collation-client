@@ -14,6 +14,7 @@ import type { IPollingUnit } from '@/stores/pollingUnit.types';
 const usePuStore = usePollingUnitStore();
 const { pollingUnit } = storeToRefs(usePuStore);
 
+// Fetch elections and their parties at mount
 const fetchElections = async () => {
   const { data } = await axios.get('/election');
   return data;
@@ -45,6 +46,7 @@ const parties: ComputedRef<MinimalPoliticalParty[]> = computed(() => {
   });
 });
 
+// Handle submission of votes form
 const partiesVotes: { [key: number]: number } = reactive({});
 const resultImage = ref(null);
 
@@ -65,7 +67,6 @@ const submitResult = () => {
     formData.append('resultImage', imgs ? imgs[0] : '');
   }
 
-  // const resultsArray: {partyId: string, votes: number}[] = [];
   Object.keys(partiesVotes).forEach((party) => {
     const obj = JSON.stringify({ partyId: +party, votes: partiesVotes[+party] });
     formData.append('partyResults', obj);
@@ -74,6 +75,7 @@ const submitResult = () => {
   mutate(formData);
 }
 
+// On success, navigate to results view
 const router = useRouter();
 watch(isSuccess, (newVal) => {
   if (newVal) {
@@ -95,16 +97,17 @@ watch(isSuccess, (newVal) => {
       </div>
       <div v-if="parties.length > 0" class="grid grid-cols-3 gap-3 my-4">
         <div v-for="party in parties" :key="party.id" class="flex flex-col items-start bg-sage p-2
-          shadow-md">
+          shadow-md hover:scale-[102%]">
           <label :for="party.name" class="font-montserrat font-semibold text-lg">{{ party.name }}</label>
           <my-base-input :id="party.name" input-type="number" v-model.number="partiesVotes[party.id]"></my-base-input>
         </div>
 
       </div>
       <div v-if="parties.length > 0" class="my-3">
-        <div class="flex flex-col items-start bg-sage p-2 shadow-md w-full">
+        <div class="flex flex-col items-start bg-sage p-2 shadow-md w-full hover:scale-[102%]">
           <label for="resultImage" class="uppercase font-montserrat font-semibold text-lg">Result Image</label>
-          <input type="file" required ref="resultImage" id="resultImage" />
+          <input type="file" required ref="resultImage" id="resultImage" class="form-input bg-timberwolf focus:ring-2 focus:ring-ferngreen focus:outline-none 
+          focus:border-ferngreen shadow-inner font-poppins w-full" />
         </div>
         <div class="my-6">
           <my-base-button button-type="submit" :is-loading="isLoading">Submit</my-base-button>
