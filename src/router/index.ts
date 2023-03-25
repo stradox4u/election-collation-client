@@ -15,6 +15,11 @@ const router = createRouter({
       name: 'submit-result',
       component: () => import('../components/pages/SubmitResult.vue'),
       beforeEnter: puSelected,
+    },
+    {
+      path: '/results/:elId',
+      name: 'results',
+      component: () => import('../components/pages/ViewResult.vue'),
     }
   ]
 })
