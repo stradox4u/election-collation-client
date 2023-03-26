@@ -32,7 +32,7 @@ const highestTally = computed(() => {
 
 const fetchResults = async () => {
   const route = useRoute();
-  const { elId } = route;
+  const { elId } = route.params;
   const { data } = await axios.get('/election/results', {
     params: { elId },
   });
