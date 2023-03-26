@@ -10,7 +10,7 @@ const props = defineProps<Props>();
 
 <template>
   <button :type="buttonType" :disabled="isLoading" class="w-full bg-brunswick p-2 text-white shadow-sm
-    hover:bg-opacity-80 hover:scale-105">
+    hover:bg-opacity-80 hover:scale-105 disabled:hover:scale-100 disabled:cursor-not-allowed">
     <slot></slot>
   </button>
 </template>
