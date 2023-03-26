@@ -95,7 +95,7 @@ watch(isSuccess, (newVal) => {
           :options-list="electionOptions">
         </my-base-select>
       </div>
-      <div v-if="parties.length > 0" class="grid grid-cols-3 gap-3 my-4">
+      <div v-if="parties.length > 0" class="grid sm:grid-cols-3 gap-3 my-4">
         <div v-for="party in parties" :key="party.id" class="flex flex-col items-start bg-sage p-2
           shadow-md hover:scale-[102%]">
           <label :for="party.name" class="font-montserrat font-semibold text-lg">{{ party.name }}</label>
