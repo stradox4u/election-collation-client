@@ -2,6 +2,7 @@
 import { computed, ref, type ComputedRef } from 'vue';
 import { useQuery, useQueryClient } from '@tanstack/vue-query';
 import MyBaseSelect, { type optionType } from '../ui/MyBaseSelect.vue';
+import PopCorn from '../PopCorn.vue';
 import axios from '../../utils/axios';
 import type { IState, ILga, IWard } from './states.types';
 import type { IPollingUnit } from '@/stores/pollingUnit.types';
@@ -175,6 +176,9 @@ const refetchPollingUnits = () => {
         :defaultOption="{optionValue: '', optionText: 'Select your PU!'}"
         :options-list="puOptions" :is-disabled="!enablePUSelect">
       </my-base-select>
+    </div>
+    <div class="mt-3">
+      <pop-corn></pop-corn>
     </div>
   </div>
 </template>
