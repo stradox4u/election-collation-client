@@ -1,7 +1,7 @@
 <script setup lang="ts">
 type Props = {
   buttonType: 'button' | 'submit' | 'reset';
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 
 const props = defineProps<Props>();
