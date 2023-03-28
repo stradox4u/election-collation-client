@@ -52,7 +52,7 @@ useQuery({
   <div class="mt-0 mb-4 w-full p-6 rounded-b-md shadow-md bg-slate-200">
     <h3 class="capitalize font-montserrat font-semibold text-lg">Results</h3>
     <div class="grid sm:grid-cols-3 gap-3 my-3">
-      <div v-for="result in voteTallies" :key="result.id" class="sm:w-[15vw] w-full">
+      <div v-for="result in voteTallies" :key="result.id" class="self-stretch">
         <result-card :party-result="result" :is-leading="highestTally.id === result.id"></result-card>
       </div>
     </div>
